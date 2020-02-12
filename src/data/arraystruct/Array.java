@@ -6,8 +6,8 @@ package data.arraystruct;
  * @Date: 2020/2/12 17:13
  * @Email: 1031759184@qq.com
  */
-public class Array {
-    private int[] data;
+public class Array<E> {
+    private E[] data;
     private int size;
 
     /**
@@ -16,7 +16,7 @@ public class Array {
      * @param capacity 数组容量
      */
     public Array(int capacity) {
-        this.data = new int[capacity];
+        this.data = (E[]) new Object[capacity];
         this.size = 0;
     }
 
@@ -60,7 +60,7 @@ public class Array {
      *
      * @param param 被添加进数组的元素
      */
-    public void addLast(int param) {
+    public void addLast(E param) {
         insert(this.size, param);
     }
 
@@ -69,7 +69,7 @@ public class Array {
      *
      * @param param 被添加进数组的元素
      */
-    public void addFirst(int param) {
+    public void addFirst(E param) {
         insert(0, param);
     }
 
@@ -79,25 +79,24 @@ public class Array {
      * @param index 插入的位置
      * @param param 插入的元素
      */
-    public void insert(int index, int param) {
-        if (isArrayFull()) {
-            throw new IllegalArgumentException("Add failed. Array is full");
-        }
+    public void insert(int index, E param) {
         if (index < 0 || index > this.size) {
             throw new IllegalArgumentException("AddLast failed. Out of the Array Index");
         }
-        for (int i = this.size - 1; i >= index; i--) {
-            this.data[i + 1] = this.data[i];
+        if (isArrayFull()) {
+            //动态扩容
+            resize(2 * this.data.length);
         }
+        System.arraycopy(this.data, index, this.data, index + 1, this.size - index);
         this.data[index] = param;
-        size++;
+        this.size++;
     }
 
     /**
      * @param index 索引位置
      * @return 获取索引位置的元素
      */
-    int get(int index) {
+    E get(int index) {
         if (index < 0 || index >= this.size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
@@ -106,14 +105,76 @@ public class Array {
 
     /**
      * 修改index索引位置的元素param
+     *
      * @param index 索引
      * @param param 被修改的元素
      */
-    void set(int index, int param) {
+    void set(int index, E param) {
         if (index < 0 || index >= this.size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         this.data[index] = param;
+    }
+
+    /**
+     * @param param 匹配元素
+     * @return 查找数组中是否包含param
+     */
+    public boolean contains(E param) {
+        for (int i = 0; i < this.size; i++) {
+            if (this.data[i].equals(param)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param param 被查找的元素
+     * @return 查找元素中param所在的索引，如果不存在元素param，则返回-1
+     */
+    public int find(E param) {
+        for (int i = 0; i < this.size; i++) {
+            if (this.data[i].equals(param)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @param index 索引
+     * @return 从数组中删除index位置的元素，返回删除的元素
+     */
+    public E remove(int index) {
+        if (index < 0 || index >= this.size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
+        E ret = this.data[index];
+        for(int i = index+1;i<size;i++){
+            data[i-1] = data[i];
+        }
+        size--;
+        //方便垃圾回收、防止出现loitering object
+        data[size] = null;
+        if (this.size == this.data.length / 2) {
+            resize(data.length / 2);
+        }
+        return ret;
+    }
+
+    /**
+     * 从数组中删除元素param
+     *
+     * @param param 被删除的元素
+     */
+    public void removeElement(E param) {
+        for (int i = 0; i < this.size; i++) {
+            int index = find(param);
+            if (index != -1) {
+                remove(index);
+            }
+        }
     }
 
     @Override
@@ -129,5 +190,18 @@ public class Array {
         }
         res.append("]");
         return res.toString();
+    }
+
+    /**
+     * 动态扩容
+     *
+     * @param newCapacity 新容量
+     */
+    private void resize(int newCapacity) {
+        E[] newArray = (E[]) new Object[newCapacity];
+        for (int i = 0; i < this.size; i++) {
+            newArray[i] = data[i];
+        }
+        data = newArray;
     }
 }
