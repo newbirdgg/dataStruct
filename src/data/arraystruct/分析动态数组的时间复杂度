@@ -1,0 +1,29 @@
+添加操作：
+
+addLast(param)  O(1)    因为存在动态扩容，所以最坏情况考虑到resize(newCapacity) O(n)
+
+addFirst(param) O(n)
+
+add(index,param) O(n/2) = O(n)
+
+根据最坏情况原则，添加操作整体属于O(n)
+
+删除操作：
+
+remove(index) O(n)      因为存在动态扩容，所以最坏情况考虑到resize(newCapacity) O(n)
+
+removeElement(param) O(n²)
+
+根据最坏情况原则，删除操作整体属于O(n²)
+
+修改操作：
+
+set(index,param) 在index已知的情况下为O(1),在index未知的情况下为O(n)
+
+根据最坏情况原则，修改操作整体属于O(n)
+
+查找操作：
+
+get(index) 在index已知的情况下为O(1),在index未知的情况下为O(n)
+
+根据最坏情况原则，查找操作整体属于O(n)
