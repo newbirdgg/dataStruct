@@ -1,0 +1,33 @@
+resize均摊复杂度分析：
+
+resize(capacity) O(n)
+
+假设当前capacity=8，数组容量为0，并且每一次添加操作都是用addLast(param)
+当再添加第9个元素时候，需要进行resize，需要把之前的8个元素重新赋值到新的数组
+中去，进行了8次移动操作，在进行9次添加操作，共进行17次操作。
+
+9次addLast操作，触发resize，共进行17次基本操作
+平均，每次addLast操作，进行了大概2次基本操作
+
+假设capacity=n，n+1次addLast，触发resize，总共进行2n+1次基本操作
+用2n+1除以n+1平均来讲，每次进行addLast操作，进行了2次基本操作
+
+这样均摊计算，resize操作跟数组中有多少元素是没有关系的，所以时间复杂度是O(1)
+
+在这个例子中，这样均摊计算，比计算最坏情况有意义，因为最坏情况不会每次都出现
+
+
+复杂度震荡：
+
+当我们同时看addLast和removeLast操作：
+（size看做数组最后一个元素的索引）
+假设当前capacity=n，并且数组空间已满，此时进行addLast操作，需要进行一次resiaze扩容
+但是，在执行完addLast时立马执行remove(size)操作时，又会进行一次resize缩容操作
+
+所以addLast      O(n)
+    remove(size) O(n)
+如果这两个交替进行，那么他们的复杂度永远是O(n),而不是O(1),这就是复杂度震荡
+
+出现问题原因：remove(size)时resize过于着急
+解决方案：Lazy
+    当size==capacity/4时，才将capacity减半

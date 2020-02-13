@@ -157,7 +157,8 @@ public class Array<E> {
         size--;
         //方便垃圾回收、防止出现loitering object
         data[size] = null;
-        if (this.size == this.data.length / 2) {
+        //为什么数组实际容量等于数组容量的1/4时才减半？原因请看复杂度震荡文件
+        if (this.size == this.data.length / 4 && data.length / 2 !=0) {
             resize(data.length / 2);
         }
         return ret;
