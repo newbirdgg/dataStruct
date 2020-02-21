@@ -96,11 +96,19 @@ public class Array<E> {
      * @param index 索引位置
      * @return 获取索引位置的元素
      */
-    E get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= this.size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         return this.data[index];
+    }
+
+    /**
+     * 获取最后一个元素
+     * @return 被获取的元素
+     */
+    public E getLast() {
+        return get(size - 1);
     }
 
     /**
@@ -109,7 +117,7 @@ public class Array<E> {
      * @param index 索引
      * @param param 被修改的元素
      */
-    void set(int index, E param) {
+    public void set(int index, E param) {
         if (index < 0 || index >= this.size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
@@ -151,17 +159,26 @@ public class Array<E> {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         E ret = this.data[index];
-        for(int i = index+1;i<size;i++){
-            data[i-1] = data[i];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
         }
         size--;
         //方便垃圾回收、防止出现loitering object
         data[size] = null;
         //为什么数组实际容量等于数组容量的1/4时才减半？原因请看复杂度震荡文件
-        if (this.size == this.data.length / 4 && data.length / 2 !=0) {
+        if (this.size == this.data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         return ret;
+    }
+
+    /**
+     * 删除数组中最后一个元素
+     *
+     * @return 被删除的元素
+     */
+    public E removeLast() {
+        return remove(size - 1);
     }
 
     /**

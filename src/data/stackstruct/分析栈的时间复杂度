@@ -1,0 +1,13 @@
+栈的复杂度分析
+
+ArrayStack<E>
+
+void push(E)    O(1) 均摊 //所有的复杂度考虑到resize均摊下来都是O(1)
+
+E pop()         O(1) 均摊
+
+E peek()        O(1) 均摊
+
+int getSize()   O(1) 均摊
+
+boolean isEmpty() O(1) 均摊

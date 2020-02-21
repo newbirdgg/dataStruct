@@ -2,7 +2,7 @@ package data.arraystruct;
 
 /**
  * @Author: liyuzhan
- * @classDesp： 测试类
+ * @classDesp： 数组测试类
  * @Date: 2020/2/12 18:18
  * @Email: 1031759184@qq.com
  */
