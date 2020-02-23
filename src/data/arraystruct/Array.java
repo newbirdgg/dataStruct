@@ -105,10 +105,19 @@ public class Array<E> {
 
     /**
      * 获取最后一个元素
+     *
      * @return 被获取的元素
      */
     public E getLast() {
         return get(size - 1);
+    }
+
+    /**
+     * 获取第一个元素
+     * @return 被获取的元素
+     */
+    public E getFirst(){
+        return get(0);
     }
 
     /**
@@ -179,6 +188,15 @@ public class Array<E> {
      */
     public E removeLast() {
         return remove(size - 1);
+    }
+
+    /**
+     * 删除数组中第一个元素
+     *
+     * @return 被删除的元素
+     */
+    public E removeFirst() {
+        return remove(0);
     }
 
     /**

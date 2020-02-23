@@ -1,0 +1,14 @@
+ArrayQueue<E>
+
+void enqueue(E)     O(1) 均摊
+
+//改版前
+E dequeue()         O(n) //在队首元素出队时，后面的所有元素都要前移一位
+//改版后(通过循环队列降低时间复杂度)
+LoopQueue类解决方案 O(1) 均摊
+
+E getFront()        O(1)
+
+int getSize()       O(1)
+
+boolean isEmpty()   O(1)
