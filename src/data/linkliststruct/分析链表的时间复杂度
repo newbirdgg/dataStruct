@@ -1,0 +1,14 @@
+##LinkList< E >
+* 添加操作
+    - addLast(e)    *O(n)*
+    - addFirst(e)   *O(1)*
+    - add(index,e)  *O(n/2)=O(n)*
+* 删除操作
+    - removeLast(e) *O(n)*
+    - removeFirst(e)    *O(1)*
+    - remove(index,e)   *O(n/2)=O(n)*
+* 修改操作
+    - set(index,e)  *O(n)*
+    - contain(e)    *O(n)*
+    - ~~find(e)~~   *~~O(n)~~*  **对于链表来说查找元素索引是没有用的,拿到了索引也不能快速访问**
+

@@ -101,6 +101,130 @@ public class LinkedList<E> {
      * @param e 被添加的元素
      */
     public void addFirst(E e) {
-        add(0,e);
+        add(0, e);
+    }
+
+    /**
+     * 获取链表第index个位置的元素
+     * 在链表中不是一个常用的操作，练习用
+     *
+     * @param index 索引
+     * @return 获取的元素
+     */
+    public E get(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
+
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    /**
+     * 获取链表第一个元素
+     *
+     * @return 获取的元素
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+    /**
+     * 获取链表的最后一个元素
+     *
+     * @return 获取的元素
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
+     * 修改链表第index个位置的元素e
+     *
+     * @param index 索引
+     * @param e     修改的元素
+     */
+    public void set(int index, E e) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    /**
+     * 查找链表中是否有元素e
+     *
+     * @param e 被查找的元素
+     * @return 是否有
+     */
+    public boolean contains(E e) {
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            if (cur.e == e) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    /**
+     * 从链表中删除index位置的元素，返回删除的元素
+     * 链表中不是一个常用的操作，练习用
+     *
+     * @param index 索引
+     * @return 被删除的元素
+     */
+    public E remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
+        Node prev = dummyHead;
+
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size--;
+        return retNode.e;
+    }
+
+    /**
+     * 删除链表中第一个元素
+     *
+     * @return 被删除的元素
+     */
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * 删除链表中最后一个元素
+     *
+     * @return 被删除的元素
+     */
+    public E removeLast() {
+        return remove(size - 1);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            res.append(cur).append("->");
+            cur = cur.next;
+        }
+        res.append("NULL");
+        return res.toString();
     }
 }
