@@ -27,12 +27,12 @@ public class Main1 {
     }
 
     public static void main(String[] args) {
-//        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         LoopQueue<Integer> loopQueue = new LoopQueue<>(10);
         LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
-        int opCount = 1000000;
+        int opCount = 100000;
 
-//        System.out.println("数组队列="+time(arrayQueue,opCount));
+        System.out.println("数组队列="+time(arrayQueue,opCount));
         System.out.println("循环队列="+time(loopQueue,opCount));
         System.out.println("链表队列="+time(linkedListQueue,opCount));
     }
