@@ -14,8 +14,8 @@ public class Solution {
      * 链表节点
      */
     public static class ListNode {
-        int val;
-        ListNode next;
+        public int val;
+        public ListNode next;
 
         ListNode(int x) {
             val = x;
@@ -26,7 +26,7 @@ public class Solution {
          *
          * @param arr 数组
          */
-        ListNode(int[] arr) {
+        public ListNode(int[] arr) {
             if (arr == null || arr.length == 0) {
                 throw new IllegalArgumentException("Array can not be empty");
             }
