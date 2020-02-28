@@ -1,4 +1,8 @@
 package data.binarysearchtreestruct;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  *  @Author: liyuzhan
  *  @classDesp： 二分搜索树测试用例
@@ -8,17 +12,22 @@ package data.binarysearchtreestruct;
 public class Main {
     public static void main(String[] args) {
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
-        int[] nums = {5,3,6,8,4,2};
-        for(int num:nums){
-            binarySearchTree.add(num);
+        Random random = new Random();
+        int n = 1000;
+        for (int i = 0;i<n;i++){
+            binarySearchTree.add(random.nextInt(10000));
         }
-        binarySearchTree.preOrder();
-        System.out.println();
+        ArrayList<Integer> nums = new ArrayList<>();
+        while (!binarySearchTree.isEmpty()){
+            nums.add(binarySearchTree.removeMax());
+        }
+        System.out.println(nums);
+        for (int i = 1;i<nums.size();i++){
+            if (nums.get(i-1)<nums.get(i)){
+                throw new IllegalArgumentException("Error");
+            }
+        }
+        System.out.println("removeMin test completed");
 
-        binarySearchTree.inOrder();
-        System.out.println();
-
-        binarySearchTree.postOrder();
-        System.out.println();
     }
 }
