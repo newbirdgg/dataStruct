@@ -1,0 +1,7 @@
+## 集合时间复杂度分析
+
+|   |  LinkedListSet | BinarySearchTreeSet  |
+|:----:|:----:|:----:|
+| add| _O(n)_ |完全二叉树： _O(logn)_ 线性树：_O(n)_  |
+| contains| _O(n)_     | 完全二叉树： _O(logn)_ 线性树：_O(n)_    |
+|remove| _O(n)_    | 完全二叉树： _O(logn)_ 线性树：_O(n)_   |

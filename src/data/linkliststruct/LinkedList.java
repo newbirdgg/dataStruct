@@ -207,6 +207,24 @@ public class LinkedList<E> {
         return remove(0);
     }
 
+    public void removeElement(E e) {
+        if (isEmpty()) {
+        } else {
+            Node prev = dummyHead;
+            for (int i = 0; i < size; i++) {
+                assert prev != null;
+                if (prev.next!=null&&prev.next.e .equals(e) ) {
+                    Node retNode = prev.next;
+                    prev.next = retNode.next;
+                    retNode.next = null;
+                    size--;
+                }
+                prev = prev.next;
+            }
+
+        }
+    }
+
     /**
      * 删除链表中最后一个元素
      *
