@@ -1,0 +1,9 @@
+## 映射时间复杂度分析
+
+|   |  LinkedListMap | BinarySearchTreeMap  |
+|:----:|:----:|:----:|
+| add| _O(n)_ |完全二叉树： _O(logn)_ 线性树：_O(n)_  |
+| contains| _O(n)_     | 完全二叉树： _O(logn)_ 线性树：_O(n)_    |
+|get| _O(n)_    | 完全二叉树： _O(logn)_ 线性树：_O(n)_   |
+|set| _O(n)_    | 完全二叉树： _O(logn)_ 线性树：_O(n)_   |
+|remove| _O(n)_    | 完全二叉树： _O(logn)_ 线性树：_O(n)_   |
