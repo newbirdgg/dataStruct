@@ -1,5 +1,7 @@
 package data.arraystruct;
 
+
+
 /**
  * @Author: liyuzhan
  * @classDesp： 简单封装的数组工具类
@@ -26,7 +28,14 @@ public class Array<E> {
     public Array() {
         this(10);
     }
-
+    @SuppressWarnings("unchecked")
+    public Array(E[] arr){
+        data = (E[]) new Object[arr.length];
+        for (int i = 0;i<arr.length;i++){
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
     /**
      * @return 数组中元素个数
      */
@@ -87,9 +96,11 @@ public class Array<E> {
             //动态扩容
             resize(2 * this.data.length);
         }
-        System.arraycopy(this.data, index, this.data, index + 1, this.size - index);
-        this.data[index] = param;
-        this.size++;
+        for (int i = size-1;i>=index;i--){
+            data[i+1] = data[i];
+        }
+        data[index] = param;
+        size++;
     }
 
     /**
@@ -114,9 +125,10 @@ public class Array<E> {
 
     /**
      * 获取第一个元素
+     *
      * @return 被获取的元素
      */
-    public E getFirst(){
+    public E getFirst() {
         return get(0);
     }
 
@@ -211,6 +223,21 @@ public class Array<E> {
                 remove(index);
             }
         }
+    }
+
+    /**
+     * 交换两个元素的位置
+     *
+     * @param i 第一个元素
+     * @param j 第二个元素
+     */
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("Index is illegal");
+        }
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override
