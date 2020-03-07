@@ -121,12 +121,51 @@ public class SegmentTree<E> {
         if (queryL >= mid + 1) {
             return query(rightTreeIndex, mid + 1, r, queryL, queryR);
         } else if (queryR <= mid) {
-            return query(leftTreeIndex,l,mid,queryL,queryR);
-        }else {
+            return query(leftTreeIndex, l, mid, queryL, queryR);
+        } else {
             E leftResult = query(leftTreeIndex, l, mid, queryL, mid);
             E rightResult = query(rightTreeIndex, mid + 1, r, mid + 1, queryR);
-            return merger.merge(leftResult,rightResult);
+            return merger.merge(leftResult, rightResult);
         }
+    }
+
+    /**
+     * 将index位置的值，更新为e
+     *
+     * @param index 索引
+     * @param e     要更新的值
+     */
+    public void set(int index, E e) {
+        if (index < 0 || index >= data.length) {
+            throw new IllegalArgumentException("Index is illegal");
+        }
+        data[index] = e;
+        set(0, 0, data.length - 1, index, e);
+    }
+
+    /**
+     * 在treeIndex为根的线段树中更新index的值为e
+     *
+     * @param treeIndex 根节点
+     * @param l         根节点起始区间
+     * @param r         根节点结束区间
+     * @param index     索引
+     * @param e         要更新的值
+     */
+    private void set(int treeIndex, int l, int r, int index, E e) {
+        if (l == r) {
+            tree[treeIndex] = e;
+            return;
+        }
+        int mid = l + (r - l) / 2;
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
+        if (index >= mid + 1) {
+            set(rightTreeIndex,mid+1,r,index,e);
+        }else {
+            set(leftTreeIndex,l,mid,index,e);
+        }
+        tree[treeIndex] = merger.merge(tree[leftTreeIndex],tree[rightTreeIndex]);
     }
 
     @Override
