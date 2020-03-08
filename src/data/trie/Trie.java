@@ -58,6 +58,39 @@ public class Trie {
             cur.isWord = true;
             size++;
         }
+    }
 
+    /**
+     * 查询单词word是否在Trie
+     * @param word 要查询的单词
+     * @return 是否在Trie
+     */
+    public boolean contains(String word){
+        Node cur = root;
+        for (int i=0;i<word.length();i++){
+            char c = word.charAt(i);
+            if (cur.next.get(c) == null){
+                return false;
+            }
+            cur = cur.next.get(c);
+        }
+        return cur.isWord;
+    }
+
+    /**
+     * 查询是否在trie中有单词以prefix为前缀
+     * @param prefix 前缀
+     * @return 是否有此前缀
+     */
+    public boolean isPrefix(String prefix){
+        Node cur = root;
+        for (int i = 0;i<prefix.length();i++){
+            char c = prefix.charAt(i);
+            if (cur.next.get(c) == null){
+                return false;
+            }
+            cur = cur.next.get(c);
+        }
+        return true;
     }
 }
