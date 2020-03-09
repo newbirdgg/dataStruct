@@ -1,0 +1,3 @@
+## Quick Find
+* unionElements(p,q) -> *O(n)*
+* isConnected(p,q) -> *O(1)*
