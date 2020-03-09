@@ -1,3 +1,6 @@
-## Quick Find
-* unionElements(p,q) -> *O(n)*
-* isConnected(p,q) -> *O(1)*
+## 并查集的时间复杂度分析
+* 严格意义上是：O(log*n) ——> iterated logarithm
+*         0 if(n<1)
+* log*n={
+*         1+log*(logn) if(n>1)
+* 近乎是O(1)级别的
