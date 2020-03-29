@@ -1,6 +1,4 @@
-package data.dynamicprogramming;
-
-import data.queuestruct.Queue;
+package data.bfs;
 
 import java.util.LinkedList;
 
@@ -10,7 +8,7 @@ import java.util.LinkedList;
  * @Date: 2020/3/15 7:07
  * @Email: 1031759184@qq.com
  */
-public class Solution5 {
+public class Solution1 {
     private int rows, cols, maxArea, area;
     private boolean[][] isMark;
     private int[][] direct = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
@@ -67,7 +65,7 @@ public class Solution5 {
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
         };
-        Solution5 solution = new Solution5();
+        Solution1 solution = new Solution1();
         System.out.println(solution.maxAreaOfIsland(a));
     }
 }
