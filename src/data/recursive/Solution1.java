@@ -17,7 +17,7 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        int n = 39;
+        int n = 20;
         Solution1 solution1 = new Solution1();
         System.out.println(solution1.Fibonacci(n));
     }
