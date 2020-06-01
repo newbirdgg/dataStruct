@@ -1,4 +1,8 @@
 package data.arraystruct;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *  @Author: liyuzhan
  *  @classDesp： LeetCode面试题56-1.数组中数字出现的次数
